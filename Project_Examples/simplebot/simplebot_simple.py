@@ -30,12 +30,12 @@ def fwd():
 	BrickPi.MotorSpeed[motor2] = speed  
 #Move Left
 def left():
-	BrickPi.MotorSpeed[motor1] = speed  
-	BrickPi.MotorSpeed[motor2] = -speed 
+	BrickPi.MotorSpeed[motor1] = speedTurn  
+	BrickPi.MotorSpeed[motor2] = -speedTurn 
 #Move Right
 def right():
-	BrickPi.MotorSpeed[motor1] = -speed  
-	BrickPi.MotorSpeed[motor2] = speed
+	BrickPi.MotorSpeed[motor1] = -speedTurn  
+	BrickPi.MotorSpeed[motor2] = speedTurn
 #Move backward
 def back():
 	BrickPi.MotorSpeed[motor1] = -speed  
@@ -52,11 +52,12 @@ motor2=PORT_C
 BrickPi.MotorEnable[motor1] = 1 #Enable the Motor A
 BrickPi.MotorEnable[motor2] = 1 #Enable the Motor B 
 BrickPiSetupSensors()   #Send the properties of sensors to BrickPi
-BrickPi.Timeout=10000	#Set timeout value for the time till which to run the motors after the last command is pressed
+BrickPi.Timeout=5	#Set timeout value for the time till which to run the motors after the last command is pressed
 BrickPiSetTimeout()		#Set the timeout
 
 speed=200	#Set the speed
-while True:
+speedTurn=100	#slower speed for turns
+"""while True:
 	inp=str(raw_input()) #Take input from the terminal
 	#Move the bot
 	if inp=='w':
@@ -72,4 +73,15 @@ while True:
 	BrickPiUpdateValues() 	#Update the motor values
 
 	time.sleep(.01)      	# sleep for 10 ms
-   
+"""
+def cupidShuffle():
+	left()
+	for (int i, i==4, i++):
+		fwd()
+		time.sleep(7)
+	right()
+	for(int i, i==4, i++):
+		fwd()
+		time.sleep(7)
+	
+	
